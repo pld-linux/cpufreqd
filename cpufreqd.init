@@ -1,0 +1,66 @@
+#!/bin/sh
+#
+# cpufreqd		Starts the cpufreqd daemon
+#
+# chkconfig:	345 44 56
+# description:	adjust cpu speed
+# processname:	cpufreqd
+#
+# pidfile:	/var/run/cpufreqd.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Configuration file.
+[ -f /etc/sysconfig/cpufreqd ] && . /etc/sysconfig/cpufreqd
+
+
+RETVAL=0
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemons.
+	if [ ! -f /var/lock/subsys/cpufreqd ]; then
+		msg_starting cpufreqd
+		daemon cpufreqd -d
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/cpufreqd
+	else
+		msg_already_running cpufreqd
+	fi
+	;;
+  stop)
+	# Stop daemons.
+	if [ -f /var/lock/subsys/cpufreqd ]; then
+		msg_stopping cpufreqd
+		killproc cpufreqd
+		rm -f /var/lock/subsys/cpufreqd >/dev/null 2>&1
+	else
+		msg_not_running cpufreqd
+	fi
+	;;
+  reload|force-reload)
+	if [ -f /var/lock/subsys/cpufreqd ]; then
+		msg_reloading cpufreqd
+		killproc cpufreqd -HUP
+		RETVAL=$?
+	else
+		msg_not_running cpufreqd >&2
+		exit 7
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	exit $?
+	;;
+  status)
+	status cpufreqd
+	exit $?
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
+esac
+
+exit $RETVAL
