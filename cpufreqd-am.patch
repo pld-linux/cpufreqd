@@ -1,15 +1,12 @@
-diff -urN cpufreqd-1.0-beta1.org/Makefile.am cpufreqd-1.0-beta1/Makefile.am
---- cpufreqd-1.0-beta1.org/Makefile.am	2003-06-15 12:08:01.000000000 +0000
-+++ cpufreqd-1.0-beta1/Makefile.am	2003-06-15 12:08:15.000000000 +0000
-@@ -30,11 +30,4 @@
- man1_MANS = manpages/cpufreqd.1
- man5_MANS = manpages/cpufreqd.conf.5
+diff -urN cpufreqd-1.0.1.org/Makefile.am cpufreqd-1.0.1/Makefile.am
+--- cpufreqd-1.0.1.org/Makefile.am	2003-10-13 16:25:46.000000000 +0200
++++ cpufreqd-1.0.1/Makefile.am	2003-10-13 16:26:17.000000000 +0200
+@@ -42,7 +42,7 @@
+ 	if [ -f $(DESTDIR)/$(sysconfdir)/cpufreqd.conf ]; then \
+ 	 echo "** preserving old configuration file **"; \
+ 	else \
+- 	 install -Dm 0644 -o root -g root cpufreqd.conf $(DESTDIR)/$(sysconfdir)/cpufreqd.conf; \
++ 	 install -Dm 0644 cpufreqd.conf $(DESTDIR)/$(sysconfdir)/cpufreqd.conf; \
+ 	fi;
  
--install-data-local:
--	if [ -f /etc/cpufreqd.conf ]; then \
--	 echo "** preserving old configuration file **"; \
--	else \
-- 	 install -m 0644 -o root -g root cpufreqd.conf /etc; \
--	fi;
--
  #sysconf_DATA = cpufreqd.conf
