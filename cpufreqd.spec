@@ -1,3 +1,5 @@
+# TODO:
+# - loading modules in init-script, if needed
 Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
