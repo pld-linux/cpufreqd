@@ -6,7 +6,7 @@ Version:	1.0
 Release:	1.%{_pre}.1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://unc.dl.sourceforge.net/sourceforge/cpufreqd/%{name}-%{version}-%{_pre}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}-%{_pre}.tar.gz
 # Source0-md5:	d712993e5dfbe18f7111c56127919d82
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
