@@ -1,13 +1,12 @@
 Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
-Version:	1.0
-%define	_pre	beta1
-Release:	1.%{_pre}.1
+Version:	1.0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}-%{_pre}.tar.gz
-# Source0-md5:	d712993e5dfbe18f7111c56127919d82
+Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	954b8c4f9b825e1ed8401849ed9efadc
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
 URL:		http://www.brodo.de/cpufreq/
@@ -28,7 +27,7 @@ przydatny do zapewniania maksymalnego czasu ¿ycia baterii, a
 jednocze¶nie dobrej szybko¶ci procesora.
 
 %prep
-%setup -q -n %{name}-%{version}-%{_pre}
+%setup -q
 %patch0 -p1
 
 %build
@@ -48,7 +47,6 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
-install *.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
