@@ -2,14 +2,18 @@ Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
 Version:	1.0
-%define	_pre	pre1
-Release:	0.%{_pre}.1
+%define	_pre	beta1
+Release:	1.%{_pre}.1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://www.staikos.net/~staikos/cpufreqd/%{name}-%{version}-%{_pre}.tar.gz
-# Source0-md5:	3596674f1c36b85f7c05c8a4adf14a3d
+Source0:	http://unc.dl.sourceforge.net/sourceforge/cpufreqd/%{name}-%{version}-%{_pre}.tar.gz
+# Source0-md5:	d712993e5dfbe18f7111c56127919d82
 Source1:	%{name}.init
+Patch0:		%{name}-am.patch
 URL:		http://www.brodo.de/cpufreq/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -25,19 +29,26 @@ jednocze¶nie dobrej szybko¶ci procesora.
 
 %prep
 %setup  -q -n %{name}-%{version}-%{_pre}
+%patch0 -p1
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__automake}
+%configure \
+	--libdir=%{_libdir}/%{name}
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/rc.d/init.d,%{_sbindir},%{_mandir}/{man1,man5}}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/%{name}
-install %{name} $RPM_BUILD_ROOT%{_sbindir}
-install cpufreqd.conf $RPM_BUILD_ROOT%{_sysconfdir}
-install *.1  $RPM_BUILD_ROOT%{_mandir}/man1
-install *.5  $RPM_BUILD_ROOT%{_mandir}/man5
+install *.conf $RPM_BUILD_ROOT%{_sysconfdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -61,8 +72,9 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README TODO
-%attr(754,root,root) %{_sbindir}/*
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*
-%{_mandir}/man1/*.1*
-%{_mandir}/man5/*.5*
+%attr(754,root,root) %{_bindir}/*
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/*.conf
+%{_mandir}/man?/*
 %attr(754,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
+%dir %{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/%{name}/*
