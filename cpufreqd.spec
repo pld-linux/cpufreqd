@@ -9,7 +9,6 @@ License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.gz
 # Source0-md5:	e26bd0a1566aae79398c92be155c0367
-# Source0-size:	330959
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
 URL:		http://www.brodo.de/cpufreq/
