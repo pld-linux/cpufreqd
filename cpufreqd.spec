@@ -16,6 +16,8 @@ URL:		http://www.brodo.de/cpufreq/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 Requires(post):	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
