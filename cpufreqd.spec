@@ -28,7 +28,7 @@ przydatny do zapewniania maksymalnego czasu ¿ycia baterii, a
 jednocze¶nie dobrej szybko¶ci procesora.
 
 %prep
-%setup  -q -n %{name}-%{version}-%{_pre}
+%setup -q -n %{name}-%{version}-%{_pre}
 %patch0 -p1
 
 %build
@@ -56,17 +56,17 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add cpufreqd
 if [ -f /var/lock/subsys/cpufreqd ]; then
-        /etc/rc.d/init.d/cpufreqd restart >&2
+	/etc/rc.d/init.d/cpufreqd restart >&2
 else
-        echo "Run \"/etc/rc.d/init.d/cpufreqd start\" to start CPU FREQ daemon."
+	echo "Run \"/etc/rc.d/init.d/cpufreqd start\" to start CPU FREQ daemon."
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/cpufreqd ]; then
-                /etc/rc.d/init.d/cpufreqd stop>&2
-        fi
-        /sbin/chkconfig --del cpufreqd
+	if [ -f /var/lock/subsys/cpufreqd ]; then
+		/etc/rc.d/init.d/cpufreqd stop>&2
+	fi
+	/sbin/chkconfig --del cpufreqd
 fi
 
 %files
