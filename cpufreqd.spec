@@ -7,6 +7,7 @@ Release:	0.%{_pre}.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://www.staikos.net/~staikos/cpufreqd/%{name}-%{version}-%{_pre}.tar.gz
+# Source0-md5:	3596674f1c36b85f7c05c8a4adf14a3d
 URL:		http://www.brodo.de/cpufreq/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
