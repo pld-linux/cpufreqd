@@ -5,7 +5,7 @@ Version:	1.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/sourceforge/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.gz
 # Source0-md5:	5e4a1a7da6322f52761e8a1401d23a4f
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
