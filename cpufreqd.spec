@@ -13,6 +13,7 @@ URL:		http://www.brodo.de/cpufreq/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
+Requires(post):	sed
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,6 +54,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add cpufreqd
+
+# Modify config file for 2.6
+if [ -d /sys/devices/system/cpu/cpu0/cpufreq ] ; then
+	# translate percentages in integer values
+	CPUFREQD_MAX_SPEED=`cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq`
+	CPUFREQD_MIN_SPEED=`cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq`
+	CPUFREQD_MHIGH_SPEED=$(( $CPUFREQD_MAX_SPEED / 100 * 66 ))
+	CPUFREQD_MLOW_SPEED=$(( $CPUFREQD_MAX_SPEED / 100 * 33 ))
+	cat /etc/cpufreqd.conf | sed -e "s/100%/$CPUFREQD_MAX_SPEED/;  \
+						s/66%/$CPUFREQD_MHIGH_SPEED/; \
+						s/33%/$CPUFREQD_MLOW_SPEED/;  \
+						s/0%/$CPUFREQD_MIN_SPEED/;" > \
+					/etc/cpufreqd.conf
+fi
+
 if [ -f /var/lock/subsys/cpufreqd ]; then
 	/etc/rc.d/init.d/cpufreqd restart >&2
 else
