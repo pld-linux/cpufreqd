@@ -1,5 +1,6 @@
 # TODO:
 # - loading modules in init-script, if needed
+# - prepare upgrade to 2.x with plugins scheme
 Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
