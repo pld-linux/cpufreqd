@@ -1,11 +1,12 @@
 # TODO:
 # - loading modules in init-script, if needed
-# - prepare upgrade to 2.x with plugins scheme
+# - missing plugin: nvclock, sensors
+# - move plugins into separate packages? (some is needed, because of additional deps)
 Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
 Version:	2.0.0
-Release:	0.1
+Release:	0.2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
@@ -93,6 +94,7 @@ fi
 %defattr(644,root,root,755)
 %doc README TODO
 %attr(754,root,root) %{_sbindir}/*
+%attr(755,root,root) %{_bindir}/*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/*.conf
 %{_mandir}/man?/*
 %attr(754,root,root) /etc/rc.d/init.d/%{name}
