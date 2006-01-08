@@ -8,13 +8,14 @@ Version:	2.0.0
 Release:	0.1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.gz
-# Source0-md5:	e4327cb9e4b8503575fe655d19e091e2
+Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
+# Source0-md5:	26a6e0795624114cc15aa48ad8b6ca6b
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
 URL:		http://cpufreqd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	cpufrequtils-devel
 BuildRequires:	libtool
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
