@@ -4,12 +4,12 @@
 Summary:	Scales your cpu frequency
 Summary(pl):	Skalowanie czêstotliwo¶ci procesora
 Name:		cpufreqd
-Version:	1.2.3
-Release:	1
+Version:	2.0.0
+Release:	0.1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.gz
-# Source0-md5:	f3a4f9317962f1bf966df52d8c536465
+# Source0-md5:	e4327cb9e4b8503575fe655d19e091e2
 Source1:	%{name}.init
 Patch0:		%{name}-am.patch
 URL:		http://cpufreqd.sourceforge.net/
