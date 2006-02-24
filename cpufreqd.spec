@@ -18,9 +18,10 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel
 BuildRequires:	libtool
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
+Requires(post):	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
-Requires(post):	sed
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -69,24 +70,17 @@ if [ -d /sys/devices/system/cpu/cpu0/cpufreq ] ; then
 	CPUFREQD_MIN_SPEED=`cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_min_freq`
 	CPUFREQD_MHIGH_SPEED=$(( $CPUFREQD_MAX_SPEED / 100 * 66 ))
 	CPUFREQD_MLOW_SPEED=$(( $CPUFREQD_MAX_SPEED / 100 * 33 ))
-	cat /etc/cpufreqd.conf | sed -e "s/100%/$CPUFREQD_MAX_SPEED/;  \
-						s/66%/$CPUFREQD_MHIGH_SPEED/; \
-						s/33%/$CPUFREQD_MLOW_SPEED/;  \
-						s/0%/$CPUFREQD_MIN_SPEED/;" > \
-					/etc/cpufreqd.conf
+	sed -i -e "s/100%/$CPUFREQD_MAX_SPEED/; \
+		s/66%/$CPUFREQD_MHIGH_SPEED/; \
+		s/33%/$CPUFREQD_MLOW_SPEED/;  \
+		s/0%/$CPUFREQD_MIN_SPEED/;" \
+		%{_sysconfdir}/cpufreqd.conf
 fi
-
-if [ -f /var/lock/subsys/cpufreqd ]; then
-	/etc/rc.d/init.d/cpufreqd restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/cpufreqd start\" to start CPU FREQ daemon."
-fi
+%service cpufreqd restart "CPU FREQ daemon"
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/cpufreqd ]; then
-		/etc/rc.d/init.d/cpufreqd stop>&2
-	fi
+	%service cpufreqd stop
 	/sbin/chkconfig --del cpufreqd
 fi
 
