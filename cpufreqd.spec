@@ -19,6 +19,7 @@ BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	sysfsutils-devel
 Requires(post):	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
