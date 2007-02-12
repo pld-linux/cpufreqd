@@ -3,7 +3,7 @@
 # - missing plugin: nvclock, sensors
 # - move plugins into separate packages? (some is needed, because of additional deps)
 Summary:	Scales your cpu frequency
-Summary(pl.UTF-8):   Skalowanie częstotliwości procesora
+Summary(pl.UTF-8):	Skalowanie częstotliwości procesora
 Name:		cpufreqd
 Version:	2.2.0
 Release:	1
