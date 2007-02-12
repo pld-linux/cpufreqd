@@ -3,7 +3,7 @@
 # - missing plugin: nvclock, sensors
 # - move plugins into separate packages? (some is needed, because of additional deps)
 Summary:	Scales your cpu frequency
-Summary(pl):	Skalowanie czêstotliwo¶ci procesora
+Summary(pl.UTF-8):   Skalowanie czÄ™stotliwoÅ›ci procesora
 Name:		cpufreqd
 Version:	2.2.0
 Release:	1
@@ -29,11 +29,11 @@ This daemon monitors /proc/apm for the battery status and scales your
 cpu frequency according to a set of rules. It is very useful for
 providing maximum battery life but good cpu speed at the same time.
 
-%description -l pl
+%description -l pl.UTF-8
 Ten demon monitoruje stan baterii przez /proc/apm i skaluje
-czêstotliwo¶æ procesora zgodnie z zestawem regu³. Jest bardzo
-przydatny do zapewniania maksymalnego czasu ¿ycia baterii, a
-jednocze¶nie dobrej szybko¶ci procesora.
+czÄ™stotliwoÅ›Ä‡ procesora zgodnie z zestawem reguÅ‚. Jest bardzo
+przydatny do zapewniania maksymalnego czasu Å¼ycia baterii, a
+jednoczeÅ›nie dobrej szybkoÅ›ci procesora.
 
 %prep
 %setup -q
