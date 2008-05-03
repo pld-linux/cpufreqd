@@ -6,7 +6,7 @@ Summary:	Scales your cpu frequency
 Summary(pl.UTF-8):	Skalowanie częstotliwości procesora
 Name:		cpufreqd
 Version:	2.2.1
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
