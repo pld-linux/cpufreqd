@@ -1,12 +1,15 @@
+#
 # TODO:
-# - loading modules in init-script, if needed
-# - missing plugin: nvclock, sensors
-# - move plugins into separate packages? (some is needed, because of additional deps)
+#   - loading modules in init-script, if needed
+#   - missing plugin: nvclock
+#   - disabled plugin: sensors (needs update to build with lm_sensors 3.x)
+#   - move plugins into separate packages? (some is needed, because of additional deps)
+#
 Summary:	Scales your cpu frequency
 Summary(pl.UTF-8):	Skalowanie częstotliwości procesora
 Name:		cpufreqd
 Version:	2.2.1
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
@@ -44,7 +47,8 @@ jednocześnie dobrej szybkości procesora.
 %{__autoconf}
 %{__automake}
 %configure \
-	--libdir=%{_libdir}/%{name}
+	--libdir=%{_libdir}/%{name} \
+	--disable-sensors
 %{__make}
 
 %install
