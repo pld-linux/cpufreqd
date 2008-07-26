@@ -4,8 +4,9 @@
 #   - missing plugin: nvclock
 #   - disabled plugin: sensors (needs update to build with lm_sensors 3.x)
 #   - move plugins into separate packages? (some is needed, because of additional deps)
+#   - update Polish translations
 #
-Summary:	Scales your cpu frequency
+Summary:	Fully configurable daemon for dynamic frequency and voltage scaling
 Summary(pl.UTF-8):	Skalowanie częstotliwości procesora
 Name:		cpufreqd
 Version:	2.3.0
@@ -15,7 +16,7 @@ Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
 # Source0-md5:	bbf3c3f83abe2e9a9e00ab435fbc87a7
 Source1:	%{name}.init
-URL:		http://cpufreqd.sourceforge.net/
+URL:		http://www.linux.it/~malattia/wiki/index.php/Cpufreqd
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	cpufrequtils-devel
@@ -28,9 +29,16 @@ Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This daemon monitors /proc/apm for the battery status and scales your
-cpu frequency according to a set of rules. It is very useful for
-providing maximum battery life but good cpu speed at the same time.
+A small daemon to adjust cpu speed and voltage (and not only) for
+kernels using any of the cpufreq drivers available. Cpufreqd is not a
+userspace governor.
+Cpufreqd allows you to apply governor profiles from rules based on
+battery level, ac status, temperature (ACPI or sensors), running
+programs, cpu usage and (maybe) more. You can also change your nforce
+FSB clock and video card frequency (NVidia only) or execute arbitrary
+commands when a specific rule is applied.
+You need a CPU with frequency and voltage scaling capabilities and a
+Linux kernel with cpufreq support.
 
 %description -l pl.UTF-8
 Ten demon monitoruje stan baterii przez /proc/apm i skaluje
