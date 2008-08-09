@@ -9,12 +9,12 @@
 Summary:	Fully configurable daemon for dynamic frequency and voltage scaling
 Summary(pl.UTF-8):	Skalowanie częstotliwości procesora
 Name:		cpufreqd
-Version:	2.3.0
+Version:	2.3.2
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/cpufreqd/%{name}-%{version}.tar.bz2
-# Source0-md5:	bbf3c3f83abe2e9a9e00ab435fbc87a7
+# Source0-md5:	5d0041a5ba74b3cc312b5b0b780a619c
 Source1:	%{name}.init
 URL:		http://www.linux.it/~malattia/wiki/index.php/Cpufreqd
 BuildRequires:	autoconf
